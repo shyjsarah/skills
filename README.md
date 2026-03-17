@@ -1,242 +1,116 @@
 # OpenClaw Skills Repository
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
 
-A collection of powerful skills for OpenClaw AI agents. 🚀
-
----
-
-## 📖 Table of Contents
-
-- [Introduction](#introduction)
-- [Skills List](#skills-list)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Development](#development)
-- [Contributing](#contributing)
-- [License](#license)
+OpenClaw 技能集合 - 可复用的 AI 技能模块 🚀
 
 ---
 
-## 🌟 Introduction
+## 📦 什么是技能？
 
-This repository contains modular skills that extend OpenClaw AI agent capabilities. Each skill provides specialized workflows, tool integrations, and domain expertise.
+技能是独立的模块化包，扩展 OpenClaw AI 的能力。每个技能包含：
 
-**Features:**
-- ✅ Multi-language support (English & Chinese)
-- ✅ Easy to install and use
-- ✅ Well-documented
-- ✅ Community-driven
+- **SKILL.md** - 技能定义（YAML frontmatter + 使用说明）
+- **scripts/** - 可执行代码（Python/Bash 等）
+- **references/** - 参考文档
+- **assets/** - 资源文件（模板、图片等）
 
 ---
 
-## 📦 Skills List
+## 📋 可用技能
 
-### 🔍 Code Quality & Analysis
+| 技能 | 描述 | 语言 |
+|------|------|------|
+| **[skill-auditor](skill-auditor/)** 🔍 | 检测重复或相似的技能，避免模型混淆 | 🌐 中文/English |
 
-| Skill | Description | Language |
-|-------|-------------|----------|
-| **skill-auditor** | Scans installed skills for duplicates and naming conflicts. Detects similar skills that may cause model confusion. | 🌐 EN/ZH |
+---
 
-**Usage:**
+## 🚀 安装技能
+
+### 前置要求
+
+- OpenClaw 已安装
+- Git
+- Python 3.7+（部分技能需要）
+
+### 方法 1：通过 npx skills（推荐）
+
 ```bash
-python3 scripts/main.py ~/.openclaw/workspace/skills/ --lang auto
+# GitHub shorthand（推荐）
+npx skills add shyjsarah/skills --skill skill-auditor -g
+
+# 或 Git URL
+npx skills add git@github.com:shyjsarah/skills.git -g
+
+# 安装所有技能
+npx skills add shyjsarah/skills -g
 ```
 
----
+**参数说明：**
+- `-g`：全局安装到 `~/.openclaw/skills/`
+- `--skill <name>`：安装指定技能
+- `-y`：跳过确认提示
 
-## 🚀 Installation
-
-### Prerequisites
-
-- OpenClaw installed
-- Python 3.7+
-- Git
-
-### Method 1: Clone Repository
+### 方法 2：手动安装
 
 ```bash
-# Clone the repository
+# 1. 克隆仓库
 git clone git@github.com:shyjsarah/skills.git
 
-# Navigate to skills directory
-cd skills
-
-# Install dependencies (if any)
-pip install -r requirements.txt
-```
-
-### Method 2: Individual Skill Installation
-
-```bash
-# Clone specific skill
-git clone git@github.com:shyjsarah/skills.git --depth 1
-
-# Copy skill to OpenClaw workspace
+# 2. 复制技能到工作区
 cp -r skill-auditor ~/.openclaw/workspace/skills/
+
+# 3. 安装依赖（如有）
+cd ~/.openclaw/workspace/skills/skill-auditor
+pip install -r requirements.txt
+
+# 4. 重启 OpenClaw
 ```
 
-### Method 3: Package Installation (.skill file)
+---
 
+## 🔧 验证安装
+
+**在 OpenClaw 对话中测试：**
+
+```
+# 检查技能是否已加载
+/openclaw skills list
+
+# 或直接测试技能功能
+请扫描我的技能库，检查是否有重复的技能
+```
+
+**终端验证（可选）：**
 ```bash
-# Package a skill
-cd skill-auditor
-python3 ../scripts/package_skill.py .
+# 检查技能目录
+ls ~/.openclaw/workspace/skills/skill-auditor/
 
-# Install .skill file in OpenClaw
-# (Follow OpenClaw documentation for .skill installation)
+# 测试技能命令
+python3 ~/.openclaw/workspace/skills/skill-auditor/scripts/main.py --help
 ```
 
 ---
 
-## 💡 Usage
+## 📄 许可证
 
-### Skill Auditor Example
-
-```bash
-# Navigate to skill directory
-cd skill-auditor
-
-# Run scan (auto-detect language)
-python3 scripts/main.py ~/.openclaw/workspace/skills/
-
-# Specify language
-python3 scripts/main.py ~/.openclaw/workspace/skills/ --lang zh
-
-# Custom threshold
-python3 scripts/main.py ~/.openclaw/workspace/skills/ --threshold 0.8
-
-# Output to file
-python3 scripts/main.py ~/.openclaw/workspace/skills/ -o audit_report.md
-```
-
-### Output Example
-
-```
-🔍 Scan Directory: /home/user/.openclaw/workspace/skills
-📦 Total Skills: 15
-
-✅ No Duplicate Skills Found
-
-All skills have distinct names and descriptions. No optimization needed.
-```
+MIT License - 详见 [LICENSE](LICENSE) 文件
 
 ---
 
-## 🛠️ Development
+## 🔗 相关链接
 
-### Project Structure
-
-```
-skills/
-├── skill-auditor/           # Skill directory
-│   ├── scripts/             # Python scripts
-│   ├── locales/             # Language files
-│   ├── references/          # Documentation
-│   ├── SKILL.md             # Skill definition (EN)
-│   ├── SKILL.zh-CN.md       # Skill definition (ZH)
-│   └── requirements.txt     # Dependencies
-└── README.md                # This file
-```
-
-### Creating New Skills
-
-1. **Initialize skill structure:**
-   ```bash
-   mkdir -p my-skill/{scripts,locales,references,assets}
-   ```
-
-2. **Create SKILL.md:**
-   ```markdown
-   ---
-   name: my-skill
-   description: What your skill does
-   ---
-   
-   # Skill Documentation
-   ...
-   ```
-
-3. **Add scripts and resources**
-
-4. **Test your skill:**
-   ```bash
-   python3 scripts/main.py [args]
-   ```
-
-### Branch Strategy
-
-- `main` - Stable releases
-- `feature/*` - New features
-- `fix/*` - Bug fixes
-
-### Commit Convention
-
-```
-feat: Add new skill
-fix: Fix bug in skill-auditor
-docs: Update README
-refactor: Improve code structure
-```
+- [OpenClaw 官方文档](https://docs.openclaw.ai)
+- [Skills.sh 技能市场](https://skills.sh/)
+- [Skills CLI GitHub](https://github.com/vercel-labs/skills)
 
 ---
 
-## 🤝 Contributing
+## 📞 支持
 
-We welcome contributions! Here's how you can help:
-
-### Ways to Contribute
-
-1. **Create new skills** - Share your specialized workflows
-2. **Improve existing skills** - Fix bugs, add features
-3. **Translate** - Add support for more languages
-4. **Documentation** - Improve guides and examples
-
-### Pull Request Process
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### Code Style
-
-- Follow PEP 8 for Python code
-- Use meaningful variable names
-- Add comments for complex logic
-- Include docstrings
+- **Bug 报告：** [GitHub Issues](https://github.com/shyjsarah/skills/issues)
+- **讨论交流：** [GitHub Discussions](https://github.com/shyjsarah/skills/discussions)
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🔗 Links
-
-- [OpenClaw Documentation](https://docs.openclaw.ai)
-- [OpenClaw GitHub](https://github.com/openclaw/openclaw)
-- [Skill Creator Guide](https://docs.openclaw.ai/skills)
-
----
-
-## 📞 Support
-
-- **Issues:** [GitHub Issues](https://github.com/shyjsarah/skills/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/shyjsarah/skills/discussions)
-
----
-
-## 🙏 Acknowledgments
-
-- OpenClaw team for the amazing framework
-- All contributors for their valuable skills
-- Community members for feedback and suggestions
-
----
-
-**Happy Skill Building! 🎉**
+**祝你使用愉快！🎉**
