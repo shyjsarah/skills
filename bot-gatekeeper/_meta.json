@@ -1,0 +1,24 @@
+{
+  "name": "bot-gatekeeper",
+  "version": "1.0.0",
+  "description": "Control who can access your OpenClaw bot. Whitelist-based access control with owner approval workflow.",
+  "tags": ["access-control", "whitelist", "authorization", "security", "gatekeeper", "bot"],
+  "author": "shyjsarah",
+  "license": "MIT-0",
+  "homepage": "https://github.com/shyjsarah/skills/tree/main/bot-gatekeeper",
+  "repository": "https://github.com/shyjsarah/skills",
+  "keywords": [
+    "bot-gatekeeper",
+    "access-control",
+    "whitelist",
+    "authorization",
+    "openclaw"
+  ],
+  "engines": {
+    "python": ">=3.6"
+  },
+  "entry": {
+    "type": "python",
+    "main": "scripts/main.py"
+  }
+}

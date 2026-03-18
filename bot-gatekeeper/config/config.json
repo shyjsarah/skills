@@ -1,0 +1,9 @@
+{
+  "owner_id": null,
+  "auto_approve_patterns": [],
+  "rejection_message": "访问被拒绝。你需要主人批准才能使用此机器人。",
+  "pending_message": "你的请求已发送给主人审批，请等待。",
+  "notify_owner": true,
+  "whitelist": [],
+  "blacklist": []
+}
