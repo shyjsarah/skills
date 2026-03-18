@@ -1,6 +1,6 @@
-# Skill Auditor
+# Skill Dedup Scanner 🔍
 
-Multi-language skill duplicate detector.
+Multi-language skill duplicate detector - Scans for duplicates and naming conflicts.
 
 ## Quick Start
 
@@ -19,6 +19,7 @@ python3 scripts/main.py ~/.openclaw/workspace/skills/ --lang zh
 
 - English: [SKILL.md](SKILL.md)
 - 中文：[SKILL.zh-CN.md](SKILL.zh-CN.md)
+- GitHub: [https://github.com/shyjsarah/skills/tree/main/skill-dedup-scanner](https://github.com/shyjsarah/skills/tree/main/skill-dedup-scanner)
 
 ## Development
 

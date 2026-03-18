@@ -1,9 +1,9 @@
 ---
-name: skill-auditor
+name: skill-dedup-scanner
 description: Scans installed skills for duplicates and naming conflicts. Detects similar skills that may cause model confusion. Use before publishing new skills or when troubleshooting trigger conflicts. Supports English and Chinese (auto-detect or --lang flag).
 ---
 
-# Skill Auditor 🔍
+# Skill Dedup Scanner 🔍
 
 Detects duplicate or similar skills that may cause model confusion.
 
@@ -118,7 +118,7 @@ $ python3 scripts/main.py ~/.openclaw/workspace/skills/ --threshold 0.6
 ## Project Structure
 
 ```
-skill-auditor/
+skill-dedup-scanner/
 ├── scripts/
 │   ├── main.py                 # Main entry point
 │   ├── skill_scanner.py        # Skill scanner
